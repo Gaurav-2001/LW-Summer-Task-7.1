@@ -115,7 +115,7 @@
     function fun1() {
         var i = document.getElementById("i1").value;
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://192.168.47.35/cgi-bin/main.py?cmd=" + i.slice(2,), false);
+        xhr.open("POST","http://192.168.47.35/cgi-bin/main.py?cmd=" + "sudo " + i.slice(2,), false);
         xhr.send();
         var output = xhr.responseText;
         var outputbox = document.getElementById("output");
