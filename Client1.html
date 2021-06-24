@@ -1,0 +1,134 @@
+<html>
+
+<head>
+    <style>
+        .custome {
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            padding: 15px 32px;
+            text-align: center;
+            font-size: 16px;
+            position: relative;
+        }
+
+        .button1 {
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>
+    </br>
+        <div id="heading">
+            🐳🐳Play with Docker🐳🐳
+        </div>
+    </br>
+    </h1>
+
+    <div id="Askforinput">
+        Enter Docker command:
+    </div>
+
+    <div id="takeinput">
+        <input id="i1" value="> " type="text" />
+    </div>
+
+    <div id="Runcommand">
+        <button class="custome button1" onclick="fun1()">
+            Run the command
+        </button>
+        <button class="custome button1" onclick="fun2()">
+            Clear Screen
+        </button>
+    </div>
+
+    <div id="outputmsg">
+        Output
+    </div>
+
+    <pre>
+        <div id="output">
+        </div>
+    </pre>
+
+</body>
+
+</html>
+
+<style>
+    body {
+        background-image: url("pictures/docker_bg.png");
+        background-size: cover;
+    }
+
+    div#heading {
+        text-align: center;
+        text-shadow: "5px";
+        color: rgb(11, 37, 117);
+    }
+
+    div#Askforinput {
+        text-align: center;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        color: black;
+        font-size: 130%;
+    }
+
+    div#takeinput {
+        text-align: center;
+        padding: 10px;
+    }
+
+    input#i1 {
+        background-color: black;
+        color: whitesmoke;
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        height: 10%;
+        width: 60%;
+        font-size: 150%;
+    }
+
+    div#Runcommand {
+        text-align: center;
+    }
+
+    div#outputmsg {
+        text-align: center;
+        color: rgba(233, 63, 12, 0.897);
+        font-family: 'Courier New', Courier, monospace;
+        font-weight: bold;
+        font-size: 150%;
+        padding: 2%;
+    }
+
+    div#output{
+        text-align: center;
+        margin: 0;
+    }
+</style>
+
+<script>
+    function fun1() {
+        var i = document.getElementById("i1").value;
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "http://192.168.47.35/cgi-bin/main.py?cmd=" + i.slice(2,), false);
+        xhr.send();
+        var output = xhr.responseText;
+        var outputbox = document.getElementById("output");
+        outputbox.style.color = "green";
+        outputbox.style.fontFamily = "'Courier New', Courier, monospace";
+        outputbox.style.fontWeight = "bold";
+        outputbox.style.fontSize = "120%";
+        document.getElementById("output").innerHTML = output;
+    }
+
+    function fun2() {
+        document.getElementById("i1").value = "> "
+        document.getElementById("output").innerHTML = " ";
+    }
+
+</script>
